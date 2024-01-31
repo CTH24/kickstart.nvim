@@ -21,6 +21,8 @@ vim.opt.rtp:prepend(lazypath)
 -- Use netrw_banner without a banner
 vim.g.netrw_banner = 0
 
+vim.api.nvim_set_keymap('n', '<leader>cc', ':YourCommand<CR>', {noremap = true, silent = true})
+
 
 
 
@@ -56,8 +58,9 @@ require('lazy').setup({
     end,
     event = "VeryLazy",
     keys = {
-      { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-      { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+      { "<leader>cc", ":CopilotChat ", desc = "CopilotChat" },
+      { "<leader>ce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
+      { "<leader>ct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
     },
   },
 
