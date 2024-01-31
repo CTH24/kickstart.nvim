@@ -16,9 +16,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
-
-
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
@@ -28,10 +25,6 @@ require('lazy').setup({
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-
-  -- Copilot
-  'zbirenbaum/copilot.lua',
-
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -156,16 +149,6 @@ require('lazy').setup({
   },
 
   {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-    config = function()
-      vim.cmd.colorscheme 'tokyonight-moon'
-    end,
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -220,7 +203,6 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
-  
   { import = 'custom.plugins' },
 }, {})
 
@@ -569,54 +551,6 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
-
--- [[ Copilot Chat
-vim.api.nvim_set_keymap('n', '<leader>cc', '<cmd>lua require("copilot").show_chat()<cr>', { noremap = true, silent = true })
-
--- [[ Configure Copilot.lua ]]
-require('copilot').setup({
-  panel = {
-    enabled = true,
-    auto_refresh = false,
-    keymap = {
-      jump_prev = "[[",
-      jump_next = "]]",
-      accept = "<CR>",
-      refresh = "gr",
-      open = "<M-CR>"
-    },
-    layout = {
-      position = "bottom", -- | top | left | right
-      ratio = 0.4
-    },
-  },
-  suggestion = {
-    enabled = true,
-    auto_trigger = false,
-    debounce = 75,
-    keymap = {
-      accept = "<M-l>",
-      accept_word = false,
-      accept_line = false,
-      next = "<M-]>",
-      prev = "<M-[>",
-      dismiss = "<C-]>",
-    },
-  },
-  filetypes = {
-    yaml = false,
-    markdown = false,
-    help = false,
-    gitcommit = false,
-    gitrebase = false,
-    hgcommit = false,
-    svn = false,
-    cvs = false,
-    ["."] = false,
-  },
-  copilot_node_command = 'node', -- Node.js version must be > 18.x
-  server_opts_overrides = {},
-})
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
